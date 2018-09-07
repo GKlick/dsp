@@ -68,4 +68,4 @@ Here's your first chance to practice this:
 
 What is your favorite emoji?  (Check out this [emoji cheat sheet](http://www.emoji-cheat-sheet.com/).)
 
->> :hear_eyes_cat: :smiley_cat: :coffee:
+>> :heart_eyes_cat: :smiley_cat: :coffee:
