@@ -68,6 +68,33 @@ $ git clone https://github.com/AllenDowney/ThinkStats2.git
 Cohen's D is an example of effect size.  Other examples of effect size are:  correlation between two variables, mean difference, regression coefficients and standardized test statistics such as: t, Z, F, etc. In this example, you will compute Cohen's D to quantify (or measure) the difference between two groups of data.   
 
 You will see effect size again and again in results of algorithms that are run in data science.  For instance, in the bootcamp, when you run a regression analysis, you will recognize the t-statistic as an example of effect size.
+ANS:
+#build variables needed to calculate the Cohen effect size
+#create 2 dataframes based on birth order from live birth data
+first_child = live[live.pregordr == 1]
+not_first_child = live[live.pregordr > 1] #not_first_child = NFC
+
+#rows, mean, variance of birth weights for first child
+n_first_child = len(first_child)
+first_child_mean_wgt = first_child.totalwgt_lb.mean()
+first_child_wgt_var = first_child.totalwgt_lb.var()
+
+#rows, mean, variance of birth weights for 2nd or more births
+n_NFC = len(not_first_child)
+NFC_mean_wgt = not_first_child.totalwgt_lb.mean()
+NFC_wgt_var = not_first_child.totalwgt_lb.var()
+
+#difference in mean values
+mean_diff = first_child_mean_wgt-NFC_mean_wgt
+#pooled SD 
+pooled_SD = np.sqrt(((n_first_child*first_child_wgt_var)+(n_NFC*NFC_wgt_var))/(n_first_child+n_NFC))
+
+cohen_effect = mean_diff/pooled_SD
+
+#check if my calculations equal the Cohen function provided by the book
+print(cohen_effect == CohenEffectSize(first_child.totalwgt_lb, not_first_child.totalwgt_lb))
+
+
 
 ### Q2. [Think Stats Chapter 3 Exercise 1](statistics/3-1-actual_biased.md) (actual vs. biased)
 This problem presents a robust example of actual vs biased data.  As a data scientist, it will be important to examine not only the data that is available, but also the data that may be missing but highly relevant.  You will see how the absence of this relevant data will bias a dataset, its distribution, and ultimately, its statistical interpretation.
