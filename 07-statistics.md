@@ -134,11 +134,12 @@ pmf = thinkstats2.Pmf(random_array)
 thinkplot.Pmf(pmf, linewidth=0.1)
 thinkplot.Config(xlabel='Random variate', ylabel='PMF')
 
-create cdf and plot
+#create cdf and plot
 cdf = thinkstats2.Cdf(random_array)
 thinkplot.Cdf(cdf)
 thinkplot.Config(xlabel='Random variate', ylabel='CDF')
 ```
+If the package random generated perfect randomness with equal probabilty for each point, then it would be expected that the visual representations of the pmf would have equally spaced bar and the cdf would have a straight slope of 1/len(array). The visuals told a slightly different story, where the pmf had values grouped togehter and other value group a white space. The cdf's slope fluctuated slightly as well.
 
 ### Q4. [Think Stats Chapter 5 Exercise 1](statistics/5-1-blue_men.md) (normal distribution of blue men)
 This is a classic example of hypothesis testing using the normal distribution.  The effect size used here is the Z-statistic. 
