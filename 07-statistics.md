@@ -101,7 +101,26 @@ Both weight and pregnancy lengths have small variances based off birth order.
 For weight the Cohen Effect does show the standard deviation for first born is about 1.1oz less than those later in the birth order.
 
 ### Q2. [Think Stats Chapter 3 Exercise 1](statistics/3-1-actual_biased.md) (actual vs. biased)
-This problem presents a robust example of actual vs biased data.  As a data scientist, it will be important to examine not only the data that is available, but also the data that may be missing but highly relevant.  You will see how the absence of this relevant data will bias a dataset, its distribution, and ultimately, its statistical interpretation.
+'''
+resp = nsfg.ReadFemResp()
+
+#to create a pmf for each value, divide the frequency of occurances by the sample space
+#the sample space here is families surveyed
+pmf = thinkstats2.Pmf(resp.numkdhh, label='numkdhh')
+thinkplot.Pmf(pmf)
+thinkplot.Config(xlabel='Number of children', ylabel='PMF')
+
+#for the biased view, the sample space is switched from families surveyed to children recoreded
+#the biased pmf multiplies the number of children in a family by the frequency that number occurs,
+#then divides by the sample space
+biased = BiasPmf(pmf, label='biased'
+thinkplot.PrePlot(2)
+thinkplot.Pmfs([pmf, biased])
+thinkplot.Config(xlabel='Number of children', ylabel='PMF')
+
+pmf.Mean()
+biased.Mean()
+'''
 
 ### Q3. [Think Stats Chapter 4 Exercise 2](statistics/4-2-random_dist.md) (random distribution)  
 This questions asks you to examine the function that produces random numbers.  Is it really random?  A good way to test that is to examine the pmf and cdf of the list of random numbers and visualize the distribution.  If you're not sure what pmf is, read more about it in Chapter 3.  
